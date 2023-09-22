@@ -99,6 +99,7 @@ const ContactCont = styled(motion.div)`
         border-radius: 20px;
         background: linear-gradient(180deg, #7b01fe 0%, #ab3dff 100%);
         filter: blur(200px);
+        pointer-events: none;
     }
     h2,h3 {
         color: #D434FE;

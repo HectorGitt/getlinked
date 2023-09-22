@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import axiosClient from '../config/axiosClient';
 import styled from 'styled-components';
 import { device } from '../../breakpoint';
+import Popup from '../Popup';
 
 const RegisterSchema = Yup.object().shape({
   team_name: Yup.string()
@@ -30,6 +31,10 @@ const RegisterSchema = Yup.object().shape({
 });
 
 export const RegisterForm = () => {
+    const [showPopup, setShowPopup] = useState(false)
+    const handleBack = () => {
+        setShowPopup(false)
+    }
   const [category, setCategory] = useState('');
   const fetchCategory = async () => {
     const response = await axiosClient.get('/hackathon/categories-list');
@@ -56,10 +61,13 @@ export const RegisterForm = () => {
         console.log(values);  
         const response = await axiosClient.post('/hackathon/registration', values);
         console.log(response);
-        action.resetForm();
+        if (response) {
+          action.resetForm();
+          setShowPopup(true)
+        }
       }}
     >
-      {({ errors, touched, setFieldValue }) => (
+      {({ errors, touched, setFieldValue, isSubmitting}) => (
         <FormCont>
           <h1>Register</h1>
           <p>Be part of this movement</p>
@@ -98,7 +106,7 @@ export const RegisterForm = () => {
               }}
               name="category" as='select'>
                 <option value={0}>Select Category</option>
-                {category? category.map((item) => (
+                {category? category?.map((item) => (
                 <option key={item.id} value={item.id}>{item.name}</option>
               )): <option value={0}>Loading...</option>}
               </Field>
@@ -134,7 +142,8 @@ export const RegisterForm = () => {
             <span>I agreed with the event terms and conditions  and privacy policy</span>
             {errors.privacy_poclicy_accepted && touched.privacy_poclicy_accepted ? <div className='error'>{errors.privacy_poclicy_accepted}</div> : null}
           </div>
-          <button type="submit">Register Now</button>
+          <button className={` ${isSubmitting? 'disabled':''}`} type="submit">Register Now</button>
+          {showPopup && <Popup handleBack={handleBack} />}
         </FormCont>
       )}
     </Formik>
@@ -150,6 +159,9 @@ const FormCont = styled(Form)`
   background: rgba(255, 255, 255, 0.03);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   z-index: 100;
+  .disabled {
+    cursor: not-allowed;
+  }
   .input-group {
       display: flex;
       flex-direction: column;

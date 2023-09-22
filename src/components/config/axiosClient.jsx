@@ -18,7 +18,6 @@ axiosClient.interceptors.response.use((response) => {
 }, (error) => {
     // Handle errors
     console.log(error.response)
-    alert(error.response.data.message)
     });
 
 

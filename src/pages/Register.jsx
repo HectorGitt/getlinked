@@ -70,10 +70,10 @@ const RegisterCont = styled(motion.div)`
         position: absolute;
         top: 10%;
         left: -10%;
-        width: 35%;
-        height: 35%;
+        width: 30%;
+        height: 30%;
         border-radius: 20px;
-        background: linear-gradient(180deg, #D434FE 0%, #d634fe98 100%);
+        background: linear-gradient(180deg, #7b01fe 0%, #ab3dff 100%);
         filter: blur(200px);
     }
     .circle2 {
@@ -85,6 +85,7 @@ const RegisterCont = styled(motion.div)`
         border-radius: 20px;
         background: linear-gradient(180deg, #D434FE 0%, #d634fe98 100%);
         filter: blur(200px);
+        pointer-events: none;
     }
     h2,h3 {
         color: #D434FE;
