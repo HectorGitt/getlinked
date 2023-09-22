@@ -104,7 +104,7 @@ export const RegisterForm = () => {
               }}
               name="category" as='select'>
                 <option value={0}>Select Category</option>
-                {category? category.map((item) => (
+                {category? category?.map((item) => (
                 <option key={item.id} value={item.id}>{item.name}</option>
               )): <option value={0}>Loading...</option>}
               </Field>
