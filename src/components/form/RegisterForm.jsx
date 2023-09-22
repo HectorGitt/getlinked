@@ -31,7 +31,6 @@ const RegisterSchema = Yup.object().shape({
 });
 
 export const RegisterForm = () => {
-  const [element, controls] = useScroll();
     const [showPopup, setShowPopup] = useState(false)
     const handleBack = () => {
         setShowPopup(false)
