@@ -31,7 +31,7 @@ export const ContactForm = () => (
         action.resetForm();
       }}
     >
-      {({ errors, touched }) => (
+      {({ errors, touched, isSubmitting }) => (
         <FormCont>
           <h2>Questions or need assistance?<br/>Let us know  about it!</h2>
           <p>Email us below to any question related to our event</p>
@@ -51,7 +51,7 @@ export const ContactForm = () => (
               {errors.message && touched.message ? <div className='errors'>{errors.message}</div> : null}
             </div>
           </div>
-          <button type="submit">Submit</button>
+          <button className={`${isSubmitting?'disabled': ''}`} type="submit">Submit</button>
         </FormCont>
       )}
     </Formik>
@@ -63,6 +63,9 @@ const FormCont = styled(Form)`
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.03);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  .disabled {
+    cursor: not-allowed;
+  }
   input, textarea {
       margin-top: 15px;
       padding: 10px 20px;

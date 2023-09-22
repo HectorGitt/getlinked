@@ -142,7 +142,7 @@ export const RegisterForm = () => {
             <span>I agreed with the event terms and conditions  and privacy policy</span>
             {errors.privacy_poclicy_accepted && touched.privacy_poclicy_accepted ? <div className='error'>{errors.privacy_poclicy_accepted}</div> : null}
           </div>
-          <button className={` ${isSubmitting? 'disabled':''}`} type="submit">Register Now</button>
+          <button className={`${isSubmitting?'disabled': ''}`} type="submit">Register Now</button>
           {showPopup && <Popup handleBack={handleBack} />}
         </FormCont>
       )}
