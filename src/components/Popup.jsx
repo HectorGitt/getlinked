@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import congratulation from '../assets/images/congratulation.png'
 
 const Popup = ({handleBack}) => {
-
   return (
     <PopupCont>
         <div>
