@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import axiosClient from '../config/axiosClient';
 import styled from 'styled-components';
 import { device } from '../../breakpoint';
+import Popup from '../Popup';
 
 const RegisterSchema = Yup.object().shape({
   team_name: Yup.string()
@@ -30,6 +31,11 @@ const RegisterSchema = Yup.object().shape({
 });
 
 export const RegisterForm = () => {
+  const [element, controls] = useScroll();
+    const [showPopup, setShowPopup] = useState(false)
+    const handleBack = () => {
+        setShowPopup(false)
+    }
   const [category, setCategory] = useState('');
   const fetchCategory = async () => {
     const response = await axiosClient.get('/hackathon/categories-list');
@@ -57,6 +63,7 @@ export const RegisterForm = () => {
         const response = await axiosClient.post('/hackathon/registration', values);
         console.log(response);
         action.resetForm();
+        setShowPopup(true)
       }}
     >
       {({ errors, touched, setFieldValue }) => (
@@ -135,6 +142,7 @@ export const RegisterForm = () => {
             {errors.privacy_poclicy_accepted && touched.privacy_poclicy_accepted ? <div className='error'>{errors.privacy_poclicy_accepted}</div> : null}
           </div>
           <button type="submit">Register Now</button>
+          {showPopup && <Popup handleBack={handleBack} />}
         </FormCont>
       )}
     </Formik>
