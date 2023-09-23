@@ -4,6 +4,8 @@ body {
   background: #140D27;
   color: white;
   font-family: 'Montserrat', sans-serif;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 * {
@@ -15,4 +17,28 @@ html {
 a {
   text-decoration: none;
   color: inherit;
+}
+button {
+  cursor: pointer;
+}
+h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin: 0;
+  font-family: 'Clash Display',sans-serif;
+}
+
+
+button {
+  border-radius: 4px;
+  background: linear-gradient(270deg, #903AFF 0%, #D434FE 56.42%, #FF26B9 99.99%, #FE34B9 100%);
+  padding: 10px 20px;
+  border: none;
+  color: #fff;
+
+}
+ul {
+  list-style-type: none;
+  margin-block-start: 0;
+  padding-inline-start: 0;
 }
