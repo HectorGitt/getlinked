@@ -5,11 +5,20 @@ import { device } from '../breakpoint'
 import {FaFacebookF, FaInstagram, FaLinkedinIn} from 'react-icons/fa'
 import {FaXTwitter, FaPhoneVolume, FaLocationDot} from 'react-icons/fa6'
 import {TbMinusVertical} from 'react-icons/tb'
+import {scrollReveal} from '../animation';
+import { useScroll } from "../components/useScroll";
+import { motion } from 'framer-motion';
 
 
 const Footer = () => {
+    const [element, controls] = useScroll();
   return (
-    <FooterCont>
+    <FooterCont
+        variants={scrollReveal}
+        animate={controls}
+        initial="hidden"
+        ref={element}
+    >
         <div className='circle'>
         </div>
         <div>
@@ -58,7 +67,7 @@ const Footer = () => {
 
 export default Footer
 
-const FooterCont = styled.footer`
+const FooterCont = styled(motion.footer)`
     position: relative;
     display: grid;
     grid-template-columns: 2fr 1fr 1fr;

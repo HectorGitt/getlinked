@@ -5,14 +5,23 @@ import registerImg from '../assets/images/3d-graphic-designer-showing-thumbs-up-
 import Popup from '../components/Popup'
 import {RegisterForm} from '../components/form/RegisterForm'
 import { device } from '../breakpoint'
+import {pageAnime} from '../animation';
+import { useScroll } from "../components/useScroll";
+import { motion } from 'framer-motion';
 
 const Register = () => {
+    const [element, controls] = useScroll();
     const [showPopup, setShowPopup] = useState(false)
     const handleBack = () => {
         setShowPopup(false)
     }
   return (
-    <RegisterCont>
+    <RegisterCont
+        variants={pageAnime}
+        animate={controls}
+        initial="hidden"
+        ref={element}
+    >
         <Nav/>
         <div className='content'>
             <div>
@@ -32,7 +41,7 @@ const Register = () => {
 
 export default Register
 
-const RegisterCont = styled.div`
+const RegisterCont = styled(motion.div)`
     position: relative;
     overflow-x: hidden;
     min-height: 100vh;

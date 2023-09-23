@@ -5,11 +5,20 @@ import {ContactForm} from '../components/form/ContactForm'
 import { device } from '../breakpoint'
 import {FaFacebookF, FaInstagram, FaLinkedinIn} from 'react-icons/fa'
 import {FaXTwitter} from 'react-icons/fa6'
+import {pageAnime} from '../animation';
+import { useScroll } from "../components/useScroll";
+import { motion } from 'framer-motion';
 
 
 const Contact = () => {
+    const [element, controls] = useScroll();
   return (
-    <ContactCont>
+    <ContactCont
+        variants={pageAnime}
+        animate={controls}
+        initial="hidden"
+        ref={element}
+    >
         <Nav/>
         <div className='content'>
             <div className=''>
@@ -47,7 +56,7 @@ const Contact = () => {
 
 export default Contact
 
-const ContactCont = styled.div`
+const ContactCont = styled(motion.div)`
     position: relative;
     overflow-x: hidden;
     min-height: 100vh;

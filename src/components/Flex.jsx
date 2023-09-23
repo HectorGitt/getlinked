@@ -1,10 +1,20 @@
 import React from 'react'
 import styled from 'styled-components'
 import { device } from '../breakpoint';
+import {scrollReveal} from '../animation';
+import { useScroll } from "../components/useScroll";
+import { motion } from 'framer-motion';
 
 const Flex = ({children}) => {
+    const [element, controls] = useScroll();
+
   return (
-    <FlexCont className='flex'>
+    <FlexCont className='flex'
+        variants={scrollReveal}
+      animate={controls}
+      initial="hidden"
+      ref={element}
+    >
         {children}
     </FlexCont>
   )
@@ -12,7 +22,7 @@ const Flex = ({children}) => {
 
 export default Flex
 
-const FlexCont = styled.div`
+const FlexCont = styled(motion.div)`
     position: relative;
     display: flex;
     justify-content: center;

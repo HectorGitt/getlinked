@@ -3,10 +3,19 @@ import styled from 'styled-components'
 import timelineData from '../timelineData'
 import verticalLine from '../assets/images/verticalLine.png'
 import { device } from '../breakpoint'
+import {scrollReveal} from '../animation';
+import { useScroll } from "../components/useScroll";
+import { motion } from 'framer-motion';
 
 const Timeline = () => {
+    const [element, controls] = useScroll();
   return (
-    <TimelineCont>
+    <TimelineCont
+        variants={scrollReveal}
+        animate={controls}
+        initial="hidden"
+        ref={element}
+    >
         <div className='timeline-heading'>
             <h2>Timeline</h2>
             <p>Here is the breakdown of the time we<br/>anticipate using for the upcoming event.</p>
@@ -35,7 +44,7 @@ const Timeline = () => {
 
 export default Timeline
 
-const TimelineCont = styled.div`
+const TimelineCont = styled(motion.div)`
     p {
         font-size: 14px;
     }

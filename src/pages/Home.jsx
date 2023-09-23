@@ -22,10 +22,20 @@ import Timeline from '../components/Timeline';
 import Flex from '../components/Flex';
 import { device } from '../breakpoint';
 import Footer from '../components/Footer';
+import {scrollReveal, pageAnime} from '../animation';
+import { useScroll } from "../components/useScroll";
+import { motion } from 'framer-motion';
 
 const Home = () => {
+    const [element, controls] = useScroll();
+    const [element2, controls2] = useScroll();
   return (
-    <div>
+    <motion.div
+        variants={pageAnime}
+        initial="hidden"
+        animate="show"
+        exit="exit"
+    >
        <Header/>
         <Flex className='introduction'>
             <div className='intro-circle'>
@@ -89,7 +99,12 @@ const Home = () => {
             
         </Flex>
         <Timeline/>
-        <Rewards>
+        <Rewards
+            variants={scrollReveal}
+            animate={controls}
+            initial="hidden"
+            ref={element}
+        >
             <div className='circle'>
             </div>
             <div className='heading'>
@@ -106,7 +121,12 @@ const Home = () => {
             </div>
             
         </Rewards>
-        <Sponsors>
+        <Sponsors
+            variants={scrollReveal}
+            animate={controls2}
+            initial="hidden"
+            ref={element2}
+        >
             <div className='first-circle'>
             </div>
             <div className='second-circle'>
@@ -160,7 +180,7 @@ const Home = () => {
             </div>
         </Flex>
         <Footer/>
-    </div>
+    </motion.div>
   )
 }
 
@@ -168,7 +188,7 @@ export default Home;
 
 
 
-const Rewards = styled.div`
+const Rewards = styled(motion.div)`
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -234,7 +254,7 @@ const Rewards = styled.div`
         }
     }
 `
-const Sponsors = styled.div`
+const Sponsors = styled(motion.div)`
     display: flex;
     flex-direction: column;
     justify-content: center;
